@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Метод координат | ЕГЭ №15</title>
+    <link rel="stylesheet" href="style.css">
+    <script>
+        window.MathJax = {
+            tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] },
+            svg: { fontCache: 'global' }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+    <header class="hero">
+        <div class="hero-content">
+            <h1>Метод координат в стереометрии</h1>
+            <p class="subtitle">Интерактивный тренажёр для подготовки к заданию №15 ЕГЭ</p>
+        </div>
+    </header>
+
+    <div class="tabs-container">
+        <nav class="tabs">
+            <button class="tab-btn active" data-tab="tab1">1. Уравнение прямой</button>
+            <button class="tab-btn" data-tab="tab2">2. Расстояние до прямой</button>
+            <button class="tab-btn" data-tab="tab3">3. Уравнение плоскости</button>
+            <button class="tab-btn" data-tab="tab4">4. Расстояние до плоскости</button>
+            <button class="tab-btn" data-tab="tab5">5. Угол между прямыми</button>
+            <button class="tab-btn" data-tab="tab6">6. Угол прямая-плоскость</button>
+            <button class="tab-btn" data-tab="tab7">7. Угол между плоскостями</button>
+        </nav>
+    </div>
+
+    <main class="content">
+        <section id="tab1" class="tab-panel active">
+            <div class="panel-header">
+                <h2>Уравнение прямой по двум точкам</h2>
+                <span class="badge">Теория</span>
+            </div>
+            <div class="formula-card">
+                <p class="formula-title">Каноническое уравнение прямой</p>
+                <div class="formula">
+                    $$ \frac{x - x_1}{x_2 - x_1} = \frac{y - y_1}{y_2 - y_1} = \frac{z - z_1}{z_2 - z_1} $$
+                </div>
+                <p class="formula-note">где $\vec{s} = \{x_2 - x_1;\, y_2 - y_1;\, z_2 - z_1\}$ — направляющий вектор прямой.</p>
+            </div>
+            <div class="task-box">
+                <p id="task1" class="task-text"></p>
+                <button class="btn-answer" onclick="showAnswer(1)">Показать ответ</button>
+                <div id="answer1" class="answer-box"></div>
+                <button class="btn-generate" onclick="generateTask1()">Сгенерировать задачу</button>
+            </div>
+        </section>
+
+        <section id="tab2" class="tab-panel">
+            <div class="panel-header">
+                <h2>Расстояние от точки до прямой</h2>
+                <span class="badge">Теория</span>
+            </div>
+            <div class="formula-card">
+                <p class="formula-title">Формула расстояния</p>
+                <div class="formula">
+                    $$ d = \frac{\left|\overrightarrow{M_0M_1} \times \vec{s}\right|}{\left|\vec{s}\right|} $$
+                </div>
+                <p class="formula-note">где $M_1$ — точка, $\vec{s}$ — направляющий вектор прямой, $\times$ — векторное произведение.</p>
+            </div>
+            <div class="task-box">
+                <p id="task2" class="task-text"></p>
+                <button class="btn-answer" onclick="showAnswer(2)">Показать ответ</button>
+                <div id="answer2" class="answer-box"></div>
+                <button class="btn-generate" onclick="generateTask2()">Сгенерировать задачу</button>
+            </div>
+        </section>
+
+        <section id="tab3" class="tab-panel">
+            <div class="panel-header">
+                <h2>Уравнение плоскости по трём точкам</h2>
+                <span class="badge">Теория</span>
+            </div>
+            <div class="formula-card">
+                <p class="formula-title">Определитель третьего порядка</p>
+                <div class="formula">
+                    $$ \begin{vmatrix} x - x_1 & y - y_1 & z - z_1 \\ x_2 - x_1 & y_2 - y_1 & z_2 - z_1 \\ x_3 - x_1 & y_3 - y_1 & z_3 - z_1 \end{vmatrix} = 0 $$
+                </div>
+                <p class="formula-note">Точки $M_1(x_1;y_1;z_1)$, $M_2(x_2;y_2;z_2)$, $M_3(x_3;y_3;z_3)$ не лежат на одной прямой.</p>
+            </div>
+            <div class="task-box">
+                <p id="task3" class="task-text"></p>
+                <button class="btn-answer" onclick="showAnswer(3)">Показать ответ</button>
+                <div id="answer3" class="answer-box"></div>
+                <button class="btn-generate" onclick="generateTask3()">Сгенерировать задачу</button>
+            </div>
+        </section>
+
+        <section id="tab4" class="tab-panel">
+            <div class="panel-header">
+                <h2>Расстояние от точки до плоскости</h2>
+                <span class="badge">Теория</span>
+            </div>
+            <div class="formula-card">
+                <p class="formula-title">Формула расстояния</p>
+                <div class="formula">
+                    $$ \rho = \frac{\left|A x_0 + B y_0 + C z_0 + D\right|}{\sqrt{A^2 + B^2 + C^2}} $$
+                </div>
+                <p class="formula-note">где $\vec{n} = \{A; B; C\}$ — вектор нормали плоскости $Ax + By + Cz + D = 0$.</p>
+            </div>
+            <div class="task-box">
+                <p id="task4" class="task-text"></p>
+                <button class="btn-answer" onclick="showAnswer(4)">Показать ответ</button>
+                <div id="answer4" class="answer-box"></div>
+                <button class="btn-generate" onclick="generateTask4()">Сгенерировать задачу</button>
+            </div>
+        </section>
+
+        <section id="tab5" class="tab-panel">
+            <div class="panel-header">
+                <h2>Угол между скрещивающимися прямыми</h2>
+                <span class="badge">Теория</span>
+            </div>
+            <div class="formula-card">
+                <p class="formula-title">Косинус угла между прямыми</p>
+                <div class="formula">
+                    $$ \cos \alpha = \frac{\left|\vec{m}_1 \cdot \vec{m}_2\right|}{\left|\vec{m}_1\right| \cdot \left|\vec{m}_2\right|} $$
+                </div>
+                <p class="formula-note">$\vec{m}_1$, $\vec{m}_2$ — направляющие векторы прямых, $\alpha$ — искомый угол.</p>
+            </div>
+            <div class="task-box">
+                <p id="task5" class="task-text"></p>
+                <button class="btn-answer" onclick="showAnswer(5)">Показать ответ</button>
+                <div id="answer5" class="answer-box"></div>
+                <button class="btn-generate" onclick="generateTask5()">Сгенерировать задачу</button>
+            </div>
+        </section>
+
+        <section id="tab6" class="tab-panel">
+            <div class="panel-header">
+                <h2>Угол между прямой и плоскостью</h2>
+                <span class="badge">Теория</span>
+            </div>
+            <div class="formula-card">
+                <p class="formula-title">Синус угла</p>
+                <div class="formula">
+                    $$ \sin \alpha = \frac{\left|\vec{c} \cdot \vec{n}\right|}{\left|\vec{c}\right| \cdot \left|\vec{n}\right|} $$
+                </div>
+                <p class="formula-note">$\vec{c}$ — направляющий вектор прямой, $\vec{n}$ — вектор нормали плоскости.</p>
+            </div>
+            <div class="task-box">
+                <p id="task6" class="task-text"></p>
+                <button class="btn-answer" onclick="showAnswer(6)">Показать ответ</button>
+                <div id="answer6" class="answer-box"></div>
+                <button class="btn-generate" onclick="generateTask6()">Сгенерировать задачу</button>
+            </div>
+        </section>
+
+        <section id="tab7" class="tab-panel">
+            <div class="panel-header">
+                <h2>Угол между плоскостями</h2>
+                <span class="badge">Теория</span>
+            </div>
+            <div class="formula-card">
+                <p class="formula-title">Косинус угла между плоскостями</p>
+                <div class="formula">
+                    $$ \cos \alpha = \frac{\left|\vec{n}_1 \cdot \vec{n}_2\right|}{\left|\vec{n}_1\right| \cdot \left|\vec{n}_2\right|} $$
+                </div>
+                <p class="formula-note">$\vec{n}_1$, $\vec{n}_2$ — векторы нормали плоскостей.</p>
+            </div>
+            <div class="task-box">
+                <p id="task7" class="task-text"></p>
+                <button class="btn-answer" onclick="showAnswer(7)">Показать ответ</button>
+                <div id="answer7" class="answer-box"></div>
+                <button class="btn-generate" onclick="generateTask7()">Сгенерировать задачу</button>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2025–2027 · Учебный проект</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
